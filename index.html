@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PointsTrack | Login</title>
+    <style>
+* { box-sizing: border-box; }
+:root { --green: #123b32; --green2: #176b50; --bg: #f3f6fa; --text: #1f2937; --muted: #687586; --border: #e0e7ee; }
+body { margin: 0; background: var(--bg); color: var(--text); font-family: Arial, Helvetica, sans-serif; }
+.topbar { display: flex; align-items: center; flex-wrap: wrap; gap: 22px; padding: 16px 4%; background: var(--green); color: #fff; }
+.brand { color: white; font-size: 1.35rem; font-weight: 700; text-decoration: none; }
+nav { display: flex; flex-wrap: wrap; gap: 14px; }
+nav a { color: #e8f5ee; text-decoration: none; font-size: .92rem; }
+nav a:hover, nav a.active { color: white; text-decoration: underline; }
+.container { max-width: 1200px; min-height: 76vh; margin: 28px auto; padding: 0 20px; }
+h1 { margin: 0 0 8px; color: var(--green); }
+h2 { margin-top: 0; font-size: 1.15rem; }
+p { line-height: 1.5; }
+.muted, .small-note { color: var(--muted); font-size: .92rem; }
+.panel, .stat, .login-card { background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 22px; box-shadow: 0 3px 12px rgba(20,40,60,.04); margin: 18px 0; }
+.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 14px; margin: 22px 0; }
+.stat { margin: 0; display: flex; flex-direction: column; gap: 10px; }
+.stat span { color: var(--muted); font-size: .9rem; }
+.stat strong { color: var(--green); font-size: 1.7rem; overflow-wrap: anywhere; }
+.single { max-width: 300px; }
+.two-column { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px; }
+label { display: block; margin: 13px 0; font-weight: 600; font-size: .92rem; }
+input, textarea, select { display: block; width: 100%; margin-top: 6px; padding: 11px 12px; border: 1px solid #cbd5df; border-radius: 7px; font: inherit; background: #fff; }
+button, .button { display: inline-block; border: 0; border-radius: 7px; padding: 11px 16px; background: var(--green2); color: #fff; cursor: pointer; font: inherit; text-decoration: none; }
+button:hover, .button:hover { background: #10523d; }
+.small { padding: 7px 10px; font-size: .84rem; }
+.inline-form { display: flex; align-items: center; gap: 8px; }
+.inline-form input { flex: 1; }
+.table-wrap { width: 100%; overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: .91rem; }
+th, td { padding: 11px 10px; border-bottom: 1px solid #e5eaf0; text-align: left; vertical-align: top; }
+th { background: #f5f8fa; color: #314253; white-space: nowrap; }
+.form-panel { max-width: 640px; }
+.badge { display: inline-block; border-radius: 20px; padding: 4px 9px; background: #e5efe9; color: #14532d; font-size: .8rem; vertical-align: middle; }
+.badge.warning { background: #fff1c2; color: #854d0e; }
+.badge.success { background: #dcfce7; color: #166534; }
+.status-ok { padding: 12px 15px; border-radius: 8px; background: #e4f6eb; color: #14532d; }
+.login-page { min-height: 100vh; display: grid; place-items: center; padding: 20px; }
+.login-card { width: 100%; max-width: 430px; margin: 0; padding: 30px; }
+.login-card h1 { font-size: 2rem; }
+.login-card > p { color: var(--muted); }
+.login-card button { width: 100%; margin-top: 10px; }
+.login-card .small-note { margin-top: 20px; font-size: .8rem; }
+.error { background: #fde8e8; color: #9b1c1c; padding: 10px 12px; border-radius: 7px; font-size: .9rem; }
+@media (max-width: 700px) { .topbar { align-items: flex-start; } nav { width: 100%; gap: 10px; } .container { padding: 0 12px; } .panel { padding: 15px; } .inline-form { align-items: stretch; flex-direction: column; } }
+    </style>
+</head>
+<body class="login-page">
+  <main class="login-card">
+    <h1>PointsTrack</h1>
+    <p>Supermarket Loyalty Points Management System</p>
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        {% for msg in messages %}
+        <p class="error">{{ msg }}</p>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+    <form action="/login" method="POST">
+      <label for="username">Username</label>
+      <input id="username" name="username" type="text" placeholder="Enter username" required>
+      <label for="password">Password</label>
+      <input id="password" name="password" type="password" placeholder="Enter password" required>
+      <button type="submit">Sign in</button>
+    </form>
+    <p class="small-note">Demo login: <b>admin</b> / <b>admin123</b><br>Don't have an account? <a href="/register">Register here</a></p>
+  </main>
+</body>
+</html>

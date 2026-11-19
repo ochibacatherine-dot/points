@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>PointsTrack | Register</title>
+<style>
+* { box-sizing: border-box; }
+:root { --green: #123b32; --green2: #176b50; --bg: #f3f6fa; --text: #1f2937; --muted: #687586; --border: #e0e7ee; }
+body { margin: 0; background: var(--bg); color: var(--text); font-family: Arial, Helvetica, sans-serif; }
+.login-page { min-height: 100vh; display: grid; place-items: center; padding: 20px; }
+.login-card { width: 100%; max-width: 430px; background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 30px; box-shadow: 0 3px 12px rgba(20,40,60,.04); }
+.login-card h1 { color: var(--green); font-size: 2rem; margin: 0 0 8px; }
+.login-card > p { color: var(--muted); }
+label { display: block; margin: 13px 0; font-weight: 600; font-size: .92rem; }
+input, select { display: block; width: 100%; margin-top: 6px; padding: 11px 12px; border: 1px solid #cbd5df; border-radius: 7px; font: inherit; }
+button { width: 100%; margin-top: 10px; border: 0; border-radius: 7px; padding: 11px 16px; background: var(--green2); color: #fff; cursor: pointer; font: inherit; }
+button:hover { background: #10523d; }
+.status-ok { padding: 12px 15px; border-radius: 8px; background: #e4f6eb; color: #14532d; }
+.small-note { color: var(--muted); font-size: .8rem; margin-top: 20px; }
+.small-note a { color: var(--green2); }
+</style>
+</head>
+<body>
+<main class="login-page"><div class="login-card">
+<h1>PointsTrack</h1><p>Create a new staff account.</p>
+{% with messages = get_flashed_messages() %}
+  {% if messages %}{% for msg in messages %}<p class="status-ok">{{ msg }}</p>{% endfor %}{% endif %}
+{% endwith %}
+<form action="/register" method="POST">
+<label>Username<input name="username" required></label>
+<label>Password<input name="password" type="password" required></label>
+<label>Role<select name="role"><option value="cashier">Cashier</option><option value="manager">Manager</option><option value="admin">Admin</option></select></label>
+<button type="submit">Register</button>
+</form>
+<p class="small-note">Already have an account? <a href="/">Login here</a></p>
+</div></main>
+</body></html>
